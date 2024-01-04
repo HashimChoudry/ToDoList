@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+import mainStyle from "../../stylesheets/main_style";
 
 const MainScreen= () => {
     const [task,setTask] = useState("");
+    const taskArr = []
+
+    const addTask = (newTask) => {
+        taskArr.push(newTask)
+        console.log(taskArr)
+    };
 
     return(
-        <View style={styles.contanier}>
+        <View style={mainStyle.container}>
             <TextInput
             style={styles.input}
             placeholder="Task"
@@ -13,7 +20,7 @@ const MainScreen= () => {
             value={task}
             onChangeText={setTask}
             />
-            <TouchableOpacity style={styles.buttonContainer} onPress={()=>{console.warn(task)}}>
+            <TouchableOpacity style={styles.buttonContainer} onPress={()=>{addTask(task)}}>
                 <Text>Add Task</Text>
             </TouchableOpacity>
         </View>
@@ -22,11 +29,7 @@ const MainScreen= () => {
 };
 
 const styles = StyleSheet.create({
-    contanier:{
-        flex:1,
-        alignItems:'center',
-        justifyContent:'flex-start',
-    },
+    
     buttonContainer:{
         alignItems: 'center',
         justifyContent: 'center',
